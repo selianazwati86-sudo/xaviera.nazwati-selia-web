@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+
+<style>
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f6fa;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #2b5783;
+  color: #ecf0f1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 22px;
+  border-bottom: 2px solid #34495e;
+  padding-bottom: 10px;
+}
+
+.menu a {
+  color: #ecf0f1;
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+.menu a:hover {
+  background-color: #5080b1;
+}
+
+/* Konten utama */
+.main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* Header */
+.header {
+  background-color: #3498db;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  color: #274058;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+/* Tabel */
+table {
+  width: 100%;
+  margin-top: 25px;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: #6988f0;
+  color: white;
+}
+
+tr:hover {
+  background: #f1f1f1;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  font-size: 14px;
+  color: #95a5a6;
+  padding: 20px 0;
+  margin-top: auto;
+}
+</style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>My Store</h2>
+    <div class="menu">
+       <a>Beranda</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="barang.html">Barang</a>
+        <a href="pengguna.html">Pengguna</a>
+         <a href="member.html">kontak member</a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+      <!-- PROFIL DI POJOK KANAN ATAS -->
+      <div style="text-align:right; font-size:18px; padding:10px; margin-bottom:10px;">
+          <span id="profilUser">👤 Pengguna</span>
+      </div>
+
+      <div class="header">Beranda</div>
+
+      <div class="cards">
+          <div class="card">
+              <h3>Total Penjualan Hari Ini</h3>
+              <p>Rp 200.000</p>
+          </div>
+          <div class="card">
+              <h3>Jumlah Produk</h3>
+              <p>3 Produk</p>
+          </div>
+          <div class="card">
+              <h3>Transaksi Hari Ini</h3>
+              <p>1 Transaksi</p>
+          </div>
+          <div class="card">
+              <h3>Pelanggan Baru</h3>
+              <p>1 Orang</p>
+          </div>
+      </div>
+
+      <footer>
+        © 2025 Xaviera Store – Semua Hak Dilindungi
+      </footer>
+
+  </div>
+
+<script>
+let user = localStorage.getItem("namaUser");
+if (user) {
+    document.getElementById("profilUser").innerHTML = "👤 " + user;
+}
+</script>
+
+</body>
+</html>

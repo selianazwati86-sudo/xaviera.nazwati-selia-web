@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Produk</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 450px;
+            margin: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .total-box {
+            background: #eee;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            color: white;
+            background: #3976e7;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #644fdb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="title">Checkout Produk</div>
+
+    <!-- PRODUK -->
+    <div class="form-group">
+        <label>Pilih Produk:</label>
+        <select id="produk">
+            <option value="0" data-nama="">-- PILIH PRODUK --</option>
+            <option value="150000" data-nama="Dres Wanita">Dres Wanita</option>
+            <option value="40000" data-nama="Daster">Daster</option>
+            <option value="200000" data-nama="Jeans">Jeans</option>
+            <option value="85000" data-nama="Atasan Wanita">Atasan Wanita</option>
+            <option value="30000" data-nama="Baju Kaos">Baju Kaos</option>
+            <option value="60000" data-nama="Celana Pendek">Celana Pendek</option>
+        </select>
+    </div>
+
+    <!-- NAMA PRODUK -->
+    <div class="form-group">
+        <label>Nama Produk:</label>
+        <input type="text" id="namaProduk" readonly>
+    </div>
+
+    <!-- HARGA PRODUK -->
+    <div class="form-group">
+        <label>Harga Produk:</label>
+        <input type="text" id="hargaProduk" readonly>
+    </div>
+
+    <!-- WARNA -->
+    <div class="form-group">
+        <label>Warna:</label>
+        <select id="warna">
+            <option value="">-- PILIH WARNA --</option>
+            <option value="Hitam">Hitam</option>
+            <option value="Putih">Putih</option>
+            <option value="Merah">Merah</option>
+            <option value="Coklat">Coklat</option>
+            <option value="Biru">Biru</option>
+        </select>
+    </div>
+
+    <!-- UKURAN -->
+    <div class="form-group">
+        <label>Ukuran:</label>
+        <select id="ukuran">
+            <option value="">-- PILIH UKURAN --</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+        </select>
+    </div>
+
+    <!-- JUMLAH -->
+    <div class="form-group">
+        <label>Jumlah Barang:</label>
+        <input type="number" id="jumlah" min="1" value="1">
+    </div>
+
+    <!-- ONGKIR / KURIR -->
+    <div class="form-group">
+        <label>Kurir / Ongkir:</label>
+        <select id="kurir">
+            <option value="0">-- PILIH KURIR --</option>
+            <option value="20000">JNE - 20.000</option>
+            <option value="18000">J&T - 18.000</option>
+            <option value="15000">SiCepat - 15.000</option>
+        </select>
+    </div>
+
+    <!-- ONGKIR -->
+    <div class="form-group">
+        <label>Ongkir:</label>
+        <input type="text" id="ongkir" readonly>
+    </div>
+
+    <!-- TOTAL -->
+    <div class="form-group total-box">
+        <label>Total Keseluruhan:</label>
+        <input type="text" id="total" readonly style="font-weight:bold;">
+    </div>
+
+    <button>Pesan Sekarang</button>
+</div>
+
+<script>
+const produkSelect = document.getElementById("produk");
+const namaProduk = document.getElementById("namaProduk");
+const hargaProduk = document.getElementById("hargaProduk");
+const jumlahInput = document.getElementById("jumlah");
+const kurirSelect = document.getElementById("kurir");
+const ongkirInput = document.getElementById("ongkir");
+const totalInput = document.getElementById("total");
+
+// Update nama & harga produk saat dipilih
+produkSelect.onchange = function() {
+    const harga = parseInt(produkSelect.value) || 0;
+    const nama = produkSelect.options[produkSelect.selectedIndex].dataset.nama || "";
+    namaProduk.value = nama;
+    hargaProduk.value = harga ? harga.toLocaleString("id-ID") : "";
+    hitungTotal();
+}
+
+// Update ongkir saat kurir dipilih
+kurirSelect.onchange = function() {
+    const ongkir = parseInt(kurirSelect.value) || 0;
+    ongkirInput.value = ongkir ? ongkir.toLocaleString("id-ID") : "";
+    hitungTotal();
+}
+
+// Hitung total otomatis
+jumlahInput.oninput = hitungTotal;
+
+function hitungTotal() {
+    const harga = parseInt(produkSelect.value) || 0;
+    const jumlah = parseInt(jumlahInput.value) || 1;
+    const ongkir = parseInt(kurirSelect.value) || 0;
+    const total = (harga * jumlah) + ongkir;
+    totalInput.value = total.toLocaleString("id-ID");
+}
+</script>
+
+</body>
+</html>

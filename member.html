@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Toko</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        padding: 0;
+        margin: 0;
+    }
+
+    .chat-container {
+        max-width: 420px;
+        margin: 40px auto;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .chat-header {
+        background: #3a3a80;
+        padding: 16px;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        position: relative;
+    }
+
+    .clear-btn {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 12px;
+        background: #7492f5;
+        padding: 5px 8px;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .chat-box {
+        height: 360px;
+        overflow-y: auto;
+        padding: 15px;
+        background: #f9f9f9;
+    }
+
+    .msg {
+        margin-bottom: 12px;
+        max-width: 80%;
+        padding: 10px 14px;
+        border-radius: 14px;
+        font-size: 14px;
+        animation: fade .2s ease-in-out;
+    }
+
+    @keyframes fade {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    .user {
+        background: #3a3a80;
+        color: white;
+        margin-left: auto;
+    }
+
+    .admin {
+        background: #e1e1e1;
+        color: #333;
+        margin-right: auto;
+    }
+
+    .chat-input {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        background: white;
+    }
+
+    .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+    }
+
+    .chat-input button {
+        margin-left: 10px;
+        background: #3a3a80;
+        padding: 10px 14px;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    /* Tombol Kembali */
+    .back-btn {
+        display: block;
+        width: 200px;
+        margin: 25px auto 40px auto;
+        padding: 12px;
+        text-align: center;
+        background: #444;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    .back-btn:hover {
+        background: #222;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">
+        Chat Toko
+        <button class="clear-btn" onclick="bersihkanChat()">Hapus</button>
+    </div>
+
+    <div class="chat-box" id="chatBox"></div>
+
+    <div class="chat-input">
+        <input type="text" id="inputMsg" placeholder="Ketik pesan..." />
+        <button onclick="kirimPesan()">Kirim</button>
+    </div>
+</div>
+
+<!-- Tombol kembali -->
+<a href="index.html.html" class="back-btn">Kembali</a>
+
+<script>
+    let chatBox = document.getElementById("chatBox");
+    let inputMsg = document.getElementById("inputMsg");
+
+    function loadChat() {
+        let data = JSON.parse(localStorage.getItem("chatToko")) || [];
+        data.forEach(msg => tampilkanPesan(msg.text, msg.sender));
+    }
+
+    function simpanChat(text, sender) {
+        let data = JSON.parse(localStorage.getItem("chatToko")) || [];
+        data.push({ text, sender });
+        localStorage.setItem("chatToko", JSON.stringify(data));
+    }
+
+    function tampilkanPesan(text, sender) {
+        let div = document.createElement("div");
+        div.classList.add("msg", sender);
+        div.textContent = text;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function kirimPesan() {
+        let text = inputMsg.value.trim();
+        if(text === "") return;
+
+        tampilkanPesan(text, "user");
+        simpanChat(text, "user");
+
+        inputMsg.value = "";
+
+        setTimeout(() => {
+            let balasan = "Admin sedang online, apa yang bisa kami bantu?";
+            tampilkanPesan(balasan, "admin");
+            simpanChat(balasan, "admin");
+        }, 700);
+    }
+
+    function bersihkanChat() {
+        if (confirm("Yakin ingin menghapus semua chat?")) {
+            localStorage.removeItem("chatToko");
+            chatBox.innerHTML = "index.html";
+        }
+    }
+
+    loadChat();
+</script>
+
+</body>
+</html>

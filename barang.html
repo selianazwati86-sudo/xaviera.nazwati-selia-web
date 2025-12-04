@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xaviera Store</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #3a3a80;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #e5e5f8;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            width: 250px;
+            margin: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-info h3 {
+            margin: 10px 0 5px;
+        }
+
+        .product-info p {
+            color: #444;
+            margin: 5px 0;
+        }
+
+        .product-info button {
+            background-color: #3a3a80;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* agar tulisan CEK OUT terlihat */
+        button a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #2c2c5e;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Xaviera Store</h1>
+        <p>Toko Online Terpercaya dan Lengkap</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Produk 1 -->
+        <div class="product-card">
+            <img src="C:\Users\ASUSTECH\Downloads\dress.jpg" alt="Dress wanita">
+            <div class="product-info">
+                <h3>Dress wanita</h3>
+                <p>Rp 150.000</p>
+                <button><a href="ongkir.html">CEK OUT</a></button>
+            </div>
+        </div>
+
+        <!-- Produk 2 -->
+        <div class="product-card">
+            <img src="C:\Users\ASUSTECH\Downloads\jeans.jpg" alt="Jeans">
+            <div class="product-info">
+                <h3>Jeans</h3>
+                <p>Rp 200.000</p>
+                <button><a href="ongkir.html">CEK OUT</a></button>
+            </div>
+        </div>
+
+        <!-- Produk 3 -->
+        <div class="product-card">
+            <img src="C:\Users\ASUSTECH\Downloads\kaos.jpg" alt="Baju kaos">
+            <div class="product-info">
+                <h3>Baju kaos</h3>
+                <p>Rp 30.000</p>
+                <button><a href="ongkir.html">CEK OUT</a></button>
+            </div>
+        </div>
+         <!-- Produk 4 -->
+        <div class="product-card">
+            <img src="https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/85c9ad3cc05a47d4aa49f12cf6504dec~tplv-aphluv4xwc-resize-webp:800:800.webp?dr=15584&t=555f072d&ps=933b5
+            bde&shp=6ce186a1&shcp=e1be8f53&idc=my2&from=1826719393" alt="atasan wanita">
+            <div class="product-info">
+                <h3>Atasan wanita</h3>
+                <p>Rp 85.000</p>
+                <button><a href="ongkir.html">CEK OUT</a></button>
+            </div>
+        </div>
+         <!-- Produk 5 -->
+        <div class="product-card">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwg
+            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
+            cTxN/8AxdxCFtj0cmf2YIQhMiCEIQB//9k=" alt="celana pendek">
+            <div class="product-info">
+                <h3>Celana pendek</h3>
+                <p>Rp 60.000</p>
+                <button><a href="ongkir.html">CEK OUT</a></button>
+            </div>
+        </div>
+         <!-- Produk 5 -->
+        <div class="product-card">
+            <img src="data:image/jpeg;base64,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" alt="Baju daster">
+            <div class="product-info">
+                <h3>Baju daster</h3>
+                <p>Rp 40.000</p>
+                <button><a href="ongkir.html">CEK OUT</a></button>
+            </div>
+        </div>
+
+    </div>
+<!-- BUTTON KEMBALI -->
+<div style="text-align:center; margin-top:20px;">
+    <a href="index.html" 
+       style="display:inline-block; 
+              background:#3a3a80; 
+              color:white; 
+              padding:10px 20px; 
+              border-radius:8px; 
+              text-decoration:none; 
+              font-size:14px;">
+        Kembali
+    </a>
+</div>
+
+    <footer>
+        <p>© 2025 Xaviera Store. Semua Hak Dilindungi.</p>
+    </footer>
+
+</body>
+</html>
